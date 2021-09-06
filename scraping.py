@@ -19,7 +19,7 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "hemisphere": hemisphere(browser),
+        "hemispheres": hemisphere(browser),
         "last_modified": dt.datetime.now()
     }
 
@@ -122,14 +122,6 @@ def hemisphere(browser):
     browser.quit()
 
     return hemisphere_image_urls
-hemisphere_image_urls = []
-
-# 3. Write code to retrieve the image urls and titles for each hemisphere.
-
-hemi_soup = soup(browser.html, 'html.parser')
-
-#hemi_divs = img_soup.find_all('div',class_='description')
-hemi_divs = hemi_soup.select('div.item')
 
 
 if __name__ == "__main__":
