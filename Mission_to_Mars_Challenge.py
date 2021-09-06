@@ -152,26 +152,18 @@ hemisphere_image_urls = []
 # 3. Write code to retrieve the image urls and titles for each hemisphere.
 
 hemi_soup = soup(browser.html, 'html.parser')
-hemi_soup
-
-
-# In[18]:
-
-
 
 #hemi_divs = img_soup.find_all('div',class_='description')
 hemi_divs = hemi_soup.select('div.item')
 
-
-# In[19]:
-
-
-for hemi in hemi_divs:
+for i in range(len(hemi_divs)):
     hemispheres = {}
-    title = hemi.h3.get_text()
-    browser.find_by_css('a.product-item h3').click()
+    title = hemi_divs[i].h3.get_text()
+    browser.find_by_css('a.product-item img')[i].click()
+
     element = browser.find_link_by_text('Sample').first
     img_url = element['href']
+
     hemispheres["img_url"] = img_url
     hemispheres["title"] = title
     hemisphere_image_urls.append(hemispheres)
@@ -179,14 +171,14 @@ for hemi in hemi_divs:
 #print(hemisphere_image_urls)
 
 
-# In[20]:
+# In[18]:
 
 
 # 4. Print the list that holds the dictionary of each image url and title.
 hemisphere_image_urls
 
 
-# In[21]:
+# In[19]:
 
 
 # 5. Quit the browser
